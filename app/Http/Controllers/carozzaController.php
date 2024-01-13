@@ -46,4 +46,29 @@ class carozzaController extends Controller
         car::create($request->all());
         return redirect()->route('cars.index')->with('message','Car added!');
     }
+
+    public function edit($id, request $request){
+        $car = car::find($id);
+        $manufacturers = manufacturer::orderBy('name')->pluck('name','id')->prepend('Select manufacturers','');
+        return view ('cars.edit', compact('manufacturers' ,'car'));
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'model'=> 'required',
+            'year'=> 'required',
+            'salesperson_email' =>'required|email',
+            'manufacturer_id'=> 'required||exists:manufacturers,id'
+        ],[
+            'model.required'=> 'Please specify model',
+            'year.required'=> 'please specify year',
+            'salesperson_email.required' =>'please specify email',
+            'salesperson_email.email' =>'please specify email',
+            'manufacturer_id.required'=> 'please specify manufacturer id'
+        ]);
+
+        $car = car::find($id);
+        $car->update($request->all());
+        return redirect()->route('cars.index')->with('message','Car updated!');
+    }
 }

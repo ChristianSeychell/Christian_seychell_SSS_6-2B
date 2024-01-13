@@ -9,9 +9,10 @@
         <div class="col-md-8">
           <div class="card">
             <div class="card-header card-title">
-              <strong>Add a new Car to the collection!!</strong>
+              <strong>Edit car Information!!</strong>
             </div>  
-            <form action="{{ route('cars.store') }}" method="POST">
+            <form action="{{ route('cars.update', $car->id) }}" method="POST">
+                @method('PUT')
                 @csrf
                 @include('cars.form')
             </form>
@@ -20,6 +21,7 @@
       </div>
     </div>
 </main>
+
 
 
 @endsection

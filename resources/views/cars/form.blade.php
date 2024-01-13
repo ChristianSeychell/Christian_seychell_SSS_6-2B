@@ -16,7 +16,7 @@
         <div class="form-group row">
           <label for="year" class="col-md-3 col-form-label">Year</label>
           <div class="col-md-9">
-            <input type="text" name="year" id="year" value="{{ old('year', $car->Year ) }}" class="form-control @error('year') is-invalid @enderror">
+            <input type="text" name="year" id="year" value="{{ old('year', $car->year ) }}" class="form-control @error('year') is-invalid @enderror">
             @error('year')
             <div class="invalid-feedback">
               {{ $message }}

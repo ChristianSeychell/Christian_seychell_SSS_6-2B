@@ -25,11 +25,10 @@ Route::get('/cars/create',  [carozzaController::class,'create'])->name('cars.cre
 
 Route::post('/cars',  [carozzaController::class,'store'])->name('cars.store');
 
-
-
-
 Route::get('/cars/{id}',  [carozzaController::class,'show'])->name('cars.show');
-
 
 Route::get('/manufacturers/index',  [manufacturerController::class,'index'])->name('manufacturers.index');
 
+Route::get('/cars/{id}/edit',  [carozzaController::class,'edit'])->name('cars.edit');
+
+Route::put('/cars/{id}',  [carozzaController::class,'update'])->name('cars.update');
