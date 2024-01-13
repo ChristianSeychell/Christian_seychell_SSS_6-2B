@@ -11,5 +11,10 @@ class car extends Model
     
     protected $fillable = ['model', 'year', 'salesperson', 'manufacturer_id'];
 
+
+    public function manufacturer()
+    {
+        return $this->belongsTo(manufacturer::class);
+    }
     
 }

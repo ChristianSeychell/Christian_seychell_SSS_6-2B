@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\carozzaController;
+use App\Http\Controllers\manufacturerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,20 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cars', function () {
-    return  view('cars.index');
-})->name('cars.index');
+Route::get('/cars', [carozzaController::class,'index'])->name('cars.index');
 
-Route::get('/cars/create', function () {
-    return view('cars.create');
-})->name('cars.create');
+Route::get('/cars/create',  [carozzaController::class,'create'])->name('cars.create');
 
-Route::get('/cars/show/{id}', function ($id) {
-    return view('cars.show');
-})->name('cars.show');
+Route::get('/cars/{id}',  [carozzaController::class,'show'])->name('cars.show');
 
 
-Route::get('/manufacuterers/index', function () {
-    return view('manufacuterers.index');
-})->name('manufacuterers.index');
+Route::get('/manufacturers/index',  [manufacturerController::class,'index'])->name('manufacturers.index');
 
