@@ -2,8 +2,6 @@
 
 @section('content')
     
-
-<h1>All Cars</h1>
 <main class="py-5">
     <div class="container">
       <div class="row">
@@ -43,15 +41,19 @@
                     <td width="150">
                       <a href="{{route('cars.show', $car->id)}}" class="btn btn-sm btn-circle btn-outline-info" title="show"><i class="fa fa-eye"></i></a>
                       <a href="{{route('cars.edit', $car->id)}}" class="btn btn-sm btn-circle btn-outline-secondary" title="edit"><i class="fa fa-edit"></i></a>
-                      <a href="#" class="btn btn-sm btn-circle btn-outline-danger" title="Delete" onclick="confirm('Are you sure?')"><i class="fa fa-times"></i></a>
-                    </td>
+                      <a href="{{route('cars.destroy', $car->id)}}" class="btn-delete btn btn-sm btn-circle btn-outline-danger" title="Delete"><i class="fa fa-times"></i></a>
+                      
+                
+                  </td>
                   </tr>
                   @endforeach
+                  <form id="form-delete" method="POST" style="display: none">
+                    @method('DELETE')
+                    @csrf
+                  </form>
                 @endif
                 </tbody>
               </table> 
-
-
             </div>
           </div>
         </div>

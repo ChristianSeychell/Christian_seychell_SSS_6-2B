@@ -71,4 +71,10 @@ class carozzaController extends Controller
         $car->update($request->all());
         return redirect()->route('cars.index')->with('message','Car updated!');
     }
+
+    public function destroy($id) {
+        $car = Car::find($id);
+            $car->delete();
+            return redirect()->route('cars.index')->with('success', 'Car deleted successfully');
+    }
 }

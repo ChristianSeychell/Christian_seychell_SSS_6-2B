@@ -32,3 +32,5 @@ Route::get('/manufacturers/index',  [manufacturerController::class,'index'])->na
 Route::get('/cars/{id}/edit',  [carozzaController::class,'edit'])->name('cars.edit');
 
 Route::put('/cars/{id}',  [carozzaController::class,'update'])->name('cars.update');
+
+Route::delete('/cars/{id}', [carozzaController::class,'destroy'])->name('cars.destroy');
