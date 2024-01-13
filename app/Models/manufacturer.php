@@ -11,7 +11,7 @@ class manufacturer extends Model
 
     protected $fillable = ['name','address','phone'];
 
-    public function manufacturer(){
-       return $this->belongsTo(manufacturer::class);
+    public function car(){
+       return $this->hasMany(car::class);
     }
 }

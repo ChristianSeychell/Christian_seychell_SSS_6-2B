@@ -4,7 +4,9 @@
     
 
 <h1>Create car</h1>
+<form action="{{ route('cars.store') }}" method="POST">
+    @csrf
+    @include('cars.form')
+</form>
 
-<a href="{{ route('cars.index') }}" >Cars</a>
-<a href="{{ route('cars.show', 1) }}" >show</a>
 @endsection

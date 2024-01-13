@@ -9,7 +9,7 @@ class carozzaController extends Controller
 {
 
     public function index(){
-        $manufacturers = manufacturer::orderBy("name")->pluck('name','id')->prepend('All manufacturers', '');
+        $manufacturers = manufacturer::orderBy("name")->pluck('name','id')->prepend('select manufacturers', '');
         if(request('manufacturer_id') == null){
             $cars = car::all();
         }else{
@@ -19,11 +19,31 @@ class carozzaController extends Controller
     }
 
     public function create(){
-        return view('cars.create');
+        $car = new car();
+        $manufacturers = manufacturer::orderBy('name')->pluck('name','id')->prepend('Select manufacturers','');
+        return view ('cars.create', compact('manufacturers' ,'car'));
+
     }
 
     public function show($id){
        $car = car::find($id);
        return view('cars.show',compact('car'));
+    }
+
+    public function store(Request $request){
+        $request->validate([
+            'model'=> 'required',
+            'year'=> 'required',
+            'salesperson_email' =>'required|email',
+            'manufacturer_id'=> 'required||exists:manufacturers,id'
+        ],[
+            'model.required'=> 'Please specify model',
+            'year.required'=> 'please specify year',
+            'salesperson_email.required' =>'please specify email',
+            'salesperson_email.email' =>'please specify email',
+            'manufacturer_id.required'=> 'please specify manufacturer id'
+        ]);
+        car::create($request->all());
+        return redirect()->route('cars.index')->with('message','Car added!');
     }
 }

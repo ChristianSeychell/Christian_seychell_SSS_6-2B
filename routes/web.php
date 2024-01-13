@@ -23,6 +23,11 @@ Route::get('/cars', [carozzaController::class,'index'])->name('cars.index');
 
 Route::get('/cars/create',  [carozzaController::class,'create'])->name('cars.create');
 
+Route::post('/cars',  [carozzaController::class,'store'])->name('cars.store');
+
+
+
+
 Route::get('/cars/{id}',  [carozzaController::class,'show'])->name('cars.show');
 
 
